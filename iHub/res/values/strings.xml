@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, Scanner!</string>
+    <string name="app_name">iHub</string>
+    <string name="membersIn">Whose in the building</string>
+    <string name="memberSignIn">Welcome.</string>
+    <string name="txt_confirm_clear_cache">Are you sure you want to clear the cache?</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="txt_cache">Cache files:</string>
+    <string name="btn_ok">Ok</string>
+    <string name="txt_clear_cache">Clear cache</string>
+    <string name="hint_clear_cache">Clear all stored data.</string>
+</resources>
