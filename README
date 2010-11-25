@@ -1,1 +1,20 @@
-Testing
+This is an Android application thats meanth to be used by both iHub 
+Green members to sign in to the iHub and iHub admins to manage the Green 
+members in the building.
+
+
+Feature List
+- Sign in
+- Sign out
+- See whose in the building
+- Get internet access once signed in
+- Admin managing members currently signed in.
+
+
+Future Features
+- Chat room
+
+Feel free to add on to the list.... :)
+
+
+Happy coding.
