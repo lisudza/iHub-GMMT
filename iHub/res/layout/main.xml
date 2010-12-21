@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lay_wrapper"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#4000" >
+ 
+    <RelativeLayout android:id="@+id/lay_main"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"    
+        android:layout_centerInParent="true"
+        android:background="#4000">
+
+        <ImageView 
+        	android:id="@+id/btn_signin"
+            android:layout_width="100px"
+			android:layout_height="100px"
+			android:layout_marginTop="20px"
+            android:layout_marginRight="80px"
+            android:layout_marginLeft="20px"
+            android:layout_marginBottom="20px"
+            android:src="@drawable/sign_selector"/>
+        
+        <ImageView 
+        	android:id="@+id/btn_members"
+			android:layout_width="100px"
+			android:layout_height="100px"
+            android:layout_toRightOf="@id/btn_signin"
+            android:layout_marginBottom="20px"
+            android:layout_marginTop="20px"
+            android:src="@drawable/members_selector"
+             />
+
+        <ImageView 
+        	android:id="@+id/btn_admin"
+			android:layout_width="100px"
+			android:layout_height="100px"
+			android:src="@drawable/admin_selector"
+            android:layout_below="@id/btn_signin"
+            android:layout_marginRight="80px"
+            android:layout_marginLeft="20px"
+            />
+
+        <ImageView 
+        	android:id="@+id/btn_visitors"
+			android:layout_width="100px"
+			android:layout_height="100px"
+			android:src="@drawable/visitors_selector"
+			android:layout_toRightOf="@id/btn_admin"
+            android:layout_below="@id/btn_members"/>
+    </RelativeLayout>
+</RelativeLayout>
