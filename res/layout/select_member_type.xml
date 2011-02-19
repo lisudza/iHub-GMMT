@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:padding="25px">
+    <ScrollView android:layout_width="fill_parent" 
+		android:layout_height="fill_parent"
+		android:gravity="center">
+		<LinearLayout android:layout_width="fill_parent" 
+	    	android:layout_height="wrap_content"
+	    	android:orientation="vertical"
+	    	android:gravity="center"
+	    	android:paddingRight="15px">
+		
+			<TextView  android:id="@+id/title"
+    			android:layout_width="wrap_content" 
+    			android:layout_height="wrap_content"
+    			android:text="Select which type of members to display"
+    		 />
+ 			
+ 			<TextView  android:id="@+id/spacer"
+    			android:layout_width="fill_parent" 
+    			android:layout_height="wrap_content" />
+ 			
+ 			<TextView  android:id="@+id/spacer"
+    			android:layout_width="fill_parent" 
+    			android:layout_height="wrap_content" />      
+ 			<Button 
+ 				android:id="@+id/btn_green_members"
+        		android:layout_width="fill_parent"
+        		android:layout_height="wrap_content"
+        		android:layout_alignParentLeft="true"
+        		android:layout_marginLeft="0px"
+        		android:textStyle="bold"
+        		android:text="Green Members {0}" />
+        	
+        	<TextView  android:id="@+id/spacer"
+    			android:layout_width="fill_parent" 
+    			android:layout_height="wrap_content" />
+    		          
+ 			<Button android:id="@+id/btn_red_members"
+        		android:layout_width="fill_parent"
+        		android:layout_height="wrap_content"
+        		android:layout_alignParentLeft="true"
+        		android:layout_marginLeft="0px"
+        		android:textStyle="bold"
+        		android:text="Red Members {0}" />
+ 			
+ 			<TextView  android:id="@+id/spacer2"
+    			android:layout_width="fill_parent" 
+    			android:layout_height="wrap_content" />
+        
+ 			<Button android:id="@+id/btn_black_members"
+        		android:layout_width="fill_parent"
+        		android:layout_height="wrap_content"
+        		android:layout_alignParentLeft="true"
+        		android:layout_marginLeft="0px"
+        		android:textStyle="bold"
+        		android:text="Black Members {0}" />
+        		
+        	<TextView  android:id="@+id/spacer"
+    			android:layout_width="fill_parent" 
+    			android:layout_height="wrap_content" />
+    		          
+ 			<Button android:id="@+id/btn_all_members"
+        		android:layout_width="fill_parent"
+        		android:layout_height="wrap_content"
+        		android:layout_alignParentLeft="true"
+        		android:layout_marginLeft="0px"
+        		android:textStyle="bold"
+        		android:text="All Members {0}" />
+        </LinearLayout>
+	</ScrollView>        
+</RelativeLayout>
