@@ -106,13 +106,13 @@ public class ImageManager {
 
 	public static File writeImage(byte[] data, String filename) {
 
-		File f = new File("/sdcard/ihub/pics/" + filename);
+		File f = new File("" + filename);
 		if (f.exists()) {
 			f.delete();
 		}
 		FileOutputStream fOut;
 		try {
-			fOut = new FileOutputStream("/sdcard/ihub/pics/"+ filename);
+			fOut = new FileOutputStream(""+ filename);
 			fOut.write(data);
 			fOut.flush();
 			fOut.close();

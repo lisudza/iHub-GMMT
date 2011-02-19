@@ -3,33 +3,28 @@
       package="com.ihub.android.app"
       android:versionCode="1"
       android:versionName="1.0">
-    <application android:icon="@drawable/icon" android:label="@string/app_name">
-        <activity android:name=".Home"
-                  android:label="@string/app_name"
-                  android:screenOrientation="portrait">
+    <application 
+    	android:icon="@drawable/icon" 
+    	android:label="@string/app_name"
+    	android:name=".IhubApplication"
+    	android:theme="@style/Theme.GDCatalog">
+        <activity android:name=".Home" android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity 
-        	android:name="MembersIn"
-        	android:label="@string/membersIn">
-        </activity>
-        <activity 
-        	android:name="MemberSignIn"
-        	android:label="@string/memberSignIn">
-        	<intent-filter>
-                 <action android:name="android.intent.action.VIEW" />
-                 </intent-filter>
-        </activity>
-        <service android:name="com.ihub.android.app.service.UpdateMembersInfoService"  
-            android:exported="true" android:label="iHubService" >
+		<activity android:name="OnlineMembers"></activity>
+		<activity android:name="Settings"></activity>
+		<activity android:name="SelectMemberType"></activity>
+		<activity android:name="MemberSignIn"></activity>
+		<activity android:name="ShowProfile"></activity>
+		<service android:name="com.ihub.android.app.service.UpdateMembersInfoService"  
+            android:exported="true" android:label="iHubService" android:process=":remote">
    			<intent-filter>
    				<action android:name="com.ihub.android.app.service.UpdateMembersInfoService"></action>
    			</intent-filter>
 		</service>
     </application>
-<uses-permission android:name="android.permission.INTERNET"></uses-permission>
-
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 </manifest> 

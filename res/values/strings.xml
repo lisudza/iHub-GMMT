@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+** Copyright (C) 2010 Cyril Mottier (http://www.cyrilmottier.com)
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+
 <resources>
-    <string name="hello">Hello World, Scanner!</string>
+    
+    <string name="app_name">iHub</string>
+        <string name="hello">Hello World, Scanner!</string>
     <string name="app_name">iHub</string>
     <string name="membersIn">Whose in the building</string>
     <string name="memberSignIn">Welcome.</string>
@@ -10,4 +30,27 @@
     <string name="btn_ok">Ok</string>
     <string name="txt_clear_cache">Clear cache</string>
     <string name="hint_clear_cache">Clear all stored data.</string>
+    <string name="app_settings">iHub | Settings </string>
+    <!-- Settings -->
+    <string name="menu_settings">Settings</string>
+    <string name ="basic_settings">Basic settings</string>
+    <string name="txt_domain">Enter web service URL</string>
+    <string name="hint_domain">Enter remote iHub web service URL</string>
+    <string name="advanced_settings">Advanced settings</string>
+    <string name="hint_advanced_settings">For more advanced settings</string>
+    <string name="txt_auto_update_delay">Auto sync frequency</string>
+	<string name="hint_auto_update_delay">Set how often should we sync with the hub.</string>
+	<string name="alert_dialog_ok">OK</string>
+    <string name="alert_dialog_hide">Hide</string>
+    <string name="alert_dialog_something">Something</string>
+    <string name="alert_dialog_cancel">Cancel</string>
+    <string name="alert_dialog_error_title">Oops</string>
+    <string name="chk_auto_fetch">Auto sync</string>
+    <string name="hint_auto_fetch">Application will automatically sync</string>
+    <string name="barcode_types">Barcode type</string>
+    <string name="hint_barcode_types">Select Barcode type to scan</string>
+	<!-- About window -->
+	<string name="menu_about">About</string>   
+ 
+    
 </resources>

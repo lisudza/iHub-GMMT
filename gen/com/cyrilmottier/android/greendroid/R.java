@@ -9,25 +9,38 @@ package com.cyrilmottier.android.greendroid;
 
 public final class R {
     public static final class anim {
-        public static final int grow_from_bottom=0x7f040000;
-        public static final int grow_from_bottomleft_to_topright=0x7f040001;
-        public static final int grow_from_bottomright_to_topleft=0x7f040002;
-        public static final int grow_from_top=0x7f040003;
-        public static final int grow_from_topleft_to_bottomright=0x7f040004;
-        public static final int grow_from_topright_to_bottomleft=0x7f040005;
-        public static final int rail=0x7f040006;
-        public static final int shrink_from_bottom=0x7f040007;
-        public static final int shrink_from_bottomleft_to_topright=0x7f040008;
-        public static final int shrink_from_bottomright_to_topleft=0x7f040009;
-        public static final int shrink_from_top=0x7f04000a;
-        public static final int shrink_from_topleft_to_bottomright=0x7f04000b;
-        public static final int shrink_from_topright_to_bottomleft=0x7f04000c;
+        public static final int gd_grow_from_bottom=0x7f040000;
+        public static final int gd_grow_from_bottomleft_to_topright=0x7f040001;
+        public static final int gd_grow_from_bottomright_to_topleft=0x7f040002;
+        public static final int gd_grow_from_top=0x7f040003;
+        public static final int gd_grow_from_topleft_to_bottomright=0x7f040004;
+        public static final int gd_grow_from_topright_to_bottomleft=0x7f040005;
+        public static final int gd_rack=0x7f040006;
+        public static final int gd_shrink_from_bottom=0x7f040007;
+        public static final int gd_shrink_from_bottomleft_to_topright=0x7f040008;
+        public static final int gd_shrink_from_bottomright_to_topleft=0x7f040009;
+        public static final int gd_shrink_from_top=0x7f04000a;
+        public static final int gd_shrink_from_topleft_to_bottomright=0x7f04000b;
+        public static final int gd_shrink_from_topright_to_bottomleft=0x7f04000c;
+        public static final int grow_from_bottom=0x7f04000d;
+        public static final int grow_from_bottomleft_to_topright=0x7f04000e;
+        public static final int grow_from_bottomright_to_topleft=0x7f04000f;
+        public static final int grow_from_top=0x7f040010;
+        public static final int grow_from_topleft_to_bottomright=0x7f040011;
+        public static final int grow_from_topright_to_bottomleft=0x7f040012;
+        public static final int rail=0x7f040013;
+        public static final int shrink_from_bottom=0x7f040014;
+        public static final int shrink_from_bottomleft_to_topright=0x7f040015;
+        public static final int shrink_from_bottomright_to_topleft=0x7f040016;
+        public static final int shrink_from_top=0x7f040017;
+        public static final int shrink_from_topleft_to_bottomright=0x7f040018;
+        public static final int shrink_from_topright_to_bottomleft=0x7f040019;
     }
     public static final class attr {
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int dividerDrawable=0x7f01003e;
+        public static final int dividerDrawable=0x7f010042;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -37,11 +50,11 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int dividerWidth=0x7f01003f;
+        public static final int dividerWidth=0x7f010043;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int drawable=0x7f01003a;
+        public static final int drawable=0x7f01003e;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -49,7 +62,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int enabled=0x7f010037;
+        public static final int enabled=0x7f01003b;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
@@ -249,6 +262,23 @@ containing a value of this type.
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
+        public static final int gdQuickActionBarItemStyle=0x7f010038;
+        /**  QuickAction related attributes 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int gdQuickActionBarStyle=0x7f010037;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int gdQuickActionGridItemStyle=0x7f01003a;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int gdQuickActionGridStyle=0x7f010039;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
         public static final int gdSegmentBackground=0x7f010025;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -382,7 +412,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int homeDrawable=0x7f010044;
+        public static final int homeDrawable=0x7f010048;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -390,15 +420,15 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int isInProgress=0x7f010039;
+        public static final int isInProgress=0x7f01003d;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int segmentedBar=0x7f010040;
+        public static final int segmentedBar=0x7f010044;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int segmentedContentView=0x7f010041;
+        public static final int segmentedContentView=0x7f010045;
         /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -406,7 +436,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int subtext=0x7f01003c;
+        public static final int subtext=0x7f010040;
         /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -414,7 +444,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int subtitle=0x7f01003b;
+        public static final int subtitle=0x7f01003f;
         /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -422,11 +452,11 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int text=0x7f010038;
+        public static final int text=0x7f01003c;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
-        public static final int thumbnail=0x7f01003d;
+        public static final int thumbnail=0x7f010041;
         /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -434,7 +464,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int title=0x7f010042;
+        public static final int title=0x7f010046;
         /** <p>Must be one of the following constant values.</p>
 <table>
 <colgroup align="left" />
@@ -445,7 +475,7 @@ containing a value of this type.
 <tr><td><code>dashboard</code></td><td>1</td><td></td></tr>
 </table>
          */
-        public static final int type=0x7f010043;
+        public static final int type=0x7f010047;
     }
     public static final class color {
         public static final int action_bar_tint=0x7f070002;
@@ -455,6 +485,7 @@ containing a value of this type.
     }
     public static final class dimen {
         public static final int gd_action_bar_height=0x7f08000b;
+        public static final int gd_arrow_offset=0x7f08000c;
         public static final int gd_drawable_height=0x7f080006;
         public static final int gd_drawable_margin=0x7f080007;
         public static final int gd_drawable_width=0x7f080005;
@@ -507,80 +538,98 @@ containing a value of this type.
         public static final int gd_action_bar_take_photo_normal=0x7f020024;
         public static final int gd_action_bar_talk_alt=0x7f020025;
         public static final int gd_action_bar_talk_normal=0x7f020026;
-        public static final int gd_segment_checkmark=0x7f020027;
-        public static final int gd_segment_checkmark_off=0x7f020028;
-        public static final int gd_segment_checkmark_on=0x7f020029;
-        public static final int gd_segment_divider=0x7f02002a;
-        public static final int gd_segment_label=0x7f02002b;
-        public static final int gd_segment_label_focused=0x7f02002c;
-        public static final int gd_segment_label_normal=0x7f02002d;
-        public static final int gd_segment_label_pressed=0x7f02002e;
-        public static final int gd_shadow_bottom=0x7f02002f;
-        public static final int gd_shadow_top=0x7f020030;
-        public static final int gd_tab_indicator=0x7f020031;
-        public static final int gd_tab_indicator_normal=0x7f020032;
-        public static final int gd_tab_indicator_pressed=0x7f020033;
-        public static final int gd_tab_indicator_selected=0x7f020034;
-        public static final int gd_tab_indicator_unselected=0x7f020035;
-        public static final int greendroid_application_logo=0x7f020036;
-        public static final int header_bg=0x7f020037;
-        public static final int icon=0x7f020038;
-        public static final int ihub=0x7f020039;
-        public static final int ihub_about=0x7f02003a;
-        public static final int ihub_settings=0x7f02003b;
-        public static final int login=0x7f02003c;
-        public static final int members_hov=0x7f02003d;
-        public static final int members_normal=0x7f02003e;
-        public static final int members_selector=0x7f02003f;
-        public static final int popup=0x7f020040;
-        public static final int production=0x7f020041;
-        public static final int quickcontact_arrow_down=0x7f020042;
-        public static final int quickcontact_arrow_up=0x7f020043;
-        public static final int quickcontact_bottom_frame=0x7f020044;
-        public static final int quickcontact_disambig_bottom_bg=0x7f020045;
-        public static final int quickcontact_disambig_divider=0x7f020046;
-        public static final int quickcontact_drop_shadow=0x7f020047;
-        public static final int quickcontact_photo_frame=0x7f020048;
-        public static final int quickcontact_slider_background=0x7f020049;
-        public static final int quickcontact_slider_btn=0x7f02004a;
-        public static final int quickcontact_slider_btn_normal=0x7f02004b;
-        public static final int quickcontact_slider_btn_on=0x7f02004c;
-        public static final int quickcontact_slider_btn_pressed=0x7f02004d;
-        public static final int quickcontact_slider_btn_selected=0x7f02004e;
-        public static final int quickcontact_slider_grip_left=0x7f02004f;
-        public static final int quickcontact_slider_grip_right=0x7f020050;
-        public static final int quickcontact_top_frame=0x7f020051;
-        public static final int round_shape=0x7f020052;
-        public static final int sign_in_hov=0x7f020053;
-        public static final int sign_in_normal=0x7f020054;
-        public static final int sign_selector=0x7f020055;
-        public static final int signin=0x7f020056;
-        public static final int signin_dialog_icon=0x7f020057;
-        public static final int signin_dialog_icon_hov=0x7f020058;
-        public static final int sym_action_add=0x7f020059;
-        public static final int sym_action_map=0x7f02005a;
-        public static final int visitors_hov=0x7f02005b;
-        public static final int visitors_normal=0x7f02005c;
-        public static final int visitors_selector=0x7f02005d;
+        public static final int gd_quick_action_arrow_up=0x7f020027;
+        public static final int gd_quick_action_bar_arrow_down=0x7f020028;
+        public static final int gd_quick_action_bar_background=0x7f020029;
+        public static final int gd_quick_action_bar_bottom_frame=0x7f02002a;
+        public static final int gd_quick_action_bar_grip_left=0x7f02002b;
+        public static final int gd_quick_action_bar_grip_right=0x7f02002c;
+        public static final int gd_quick_action_bar_item=0x7f02002d;
+        public static final int gd_quick_action_bar_item_normal=0x7f02002e;
+        public static final int gd_quick_action_bar_item_pressed=0x7f02002f;
+        public static final int gd_quick_action_bar_item_selected=0x7f020030;
+        public static final int gd_quick_action_grid_arrow_down=0x7f020031;
+        public static final int gd_quick_action_grid_bg=0x7f020032;
+        public static final int gd_quick_action_grid_bottom_frame=0x7f020033;
+        public static final int gd_quick_action_grid_selector=0x7f020034;
+        public static final int gd_quick_action_grid_selector_focused=0x7f020035;
+        public static final int gd_quick_action_grid_selector_pressed=0x7f020036;
+        public static final int gd_quick_action_top_frame=0x7f020037;
+        public static final int gd_segment_checkmark=0x7f020038;
+        public static final int gd_segment_checkmark_off=0x7f020039;
+        public static final int gd_segment_checkmark_on=0x7f02003a;
+        public static final int gd_segment_divider=0x7f02003b;
+        public static final int gd_segment_label=0x7f02003c;
+        public static final int gd_segment_label_focused=0x7f02003d;
+        public static final int gd_segment_label_normal=0x7f02003e;
+        public static final int gd_segment_label_pressed=0x7f02003f;
+        public static final int gd_shadow_bottom=0x7f020040;
+        public static final int gd_shadow_top=0x7f020041;
+        public static final int gd_tab_indicator=0x7f020042;
+        public static final int gd_tab_indicator_normal=0x7f020043;
+        public static final int gd_tab_indicator_pressed=0x7f020044;
+        public static final int gd_tab_indicator_selected=0x7f020045;
+        public static final int gd_tab_indicator_unselected=0x7f020046;
+        public static final int greendroid_application_logo=0x7f020047;
+        public static final int header_bg=0x7f020048;
+        public static final int ic_tweets_bubble=0x7f020049;
+        public static final int icon=0x7f02004a;
+        public static final int ihub=0x7f02004b;
+        public static final int ihub_about=0x7f02004c;
+        public static final int ihub_settings=0x7f02004d;
+        public static final int login=0x7f02004e;
+        public static final int members_hov=0x7f02004f;
+        public static final int members_normal=0x7f020050;
+        public static final int members_selector=0x7f020051;
+        public static final int popup=0x7f020052;
+        public static final int production=0x7f020053;
+        public static final int quickcontact_arrow_down=0x7f020054;
+        public static final int quickcontact_arrow_up=0x7f020055;
+        public static final int quickcontact_bottom_frame=0x7f020056;
+        public static final int quickcontact_disambig_bottom_bg=0x7f020057;
+        public static final int quickcontact_disambig_divider=0x7f020058;
+        public static final int quickcontact_drop_shadow=0x7f020059;
+        public static final int quickcontact_photo_frame=0x7f02005a;
+        public static final int quickcontact_slider_background=0x7f02005b;
+        public static final int quickcontact_slider_btn=0x7f02005c;
+        public static final int quickcontact_slider_btn_normal=0x7f02005d;
+        public static final int quickcontact_slider_btn_on=0x7f02005e;
+        public static final int quickcontact_slider_btn_pressed=0x7f02005f;
+        public static final int quickcontact_slider_btn_selected=0x7f020060;
+        public static final int quickcontact_slider_grip_left=0x7f020061;
+        public static final int quickcontact_slider_grip_right=0x7f020062;
+        public static final int quickcontact_top_frame=0x7f020063;
+        public static final int round_shape=0x7f020064;
+        public static final int sign_in_hov=0x7f020065;
+        public static final int sign_in_normal=0x7f020066;
+        public static final int sign_selector=0x7f020067;
+        public static final int signin=0x7f020068;
+        public static final int signin_dialog_icon=0x7f020069;
+        public static final int signin_dialog_icon_hov=0x7f02006a;
+        public static final int sym_action_add=0x7f02006b;
+        public static final int sym_action_map=0x7f02006c;
+        public static final int visitors_hov=0x7f02006d;
+        public static final int visitors_normal=0x7f02006e;
+        public static final int visitors_selector=0x7f02006f;
     }
     public static final class id {
-        public static final int LinearLayout01=0x7f060030;
+        public static final int LinearLayout01=0x7f060038;
         public static final int NUMERIC_WIDGET_HOLDER=0x7f06000a;
         public static final int NUMERIC_WIDGET_LABEL=0x7f060009;
-        public static final int arrow_down=0x7f060027;
-        public static final int arrow_up=0x7f060023;
-        public static final int btn_admin=0x7f06001f;
-        public static final int btn_all_members=0x7f06002d;
-        public static final int btn_black_members=0x7f06002c;
-        public static final int btn_cancel=0x7f060032;
-        public static final int btn_green_members=0x7f060029;
-        public static final int btn_members=0x7f06001e;
-        public static final int btn_red_members=0x7f06002a;
-        public static final int btn_signin=0x7f06001d;
-        public static final int btn_view_full_profile=0x7f060031;
-        public static final int btn_visitors=0x7f060020;
+        public static final int arrow_down=0x7f06002f;
+        public static final int arrow_up=0x7f06002b;
+        public static final int btn_admin=0x7f060027;
+        public static final int btn_all_members=0x7f060035;
+        public static final int btn_black_members=0x7f060034;
+        public static final int btn_cancel=0x7f06003a;
+        public static final int btn_green_members=0x7f060031;
+        public static final int btn_members=0x7f060026;
+        public static final int btn_red_members=0x7f060032;
+        public static final int btn_signin=0x7f060025;
+        public static final int btn_view_full_profile=0x7f060039;
+        public static final int btn_visitors=0x7f060028;
         public static final int dashboard=0x7f060001;
-        public static final int footer=0x7f060026;
+        public static final int footer=0x7f06002e;
         public static final int gd_action_bar=0x7f060004;
         public static final int gd_action_bar_content_view=0x7f060006;
         public static final int gd_action_bar_home_item=0x7f06000f;
@@ -593,24 +642,32 @@ containing a value of this type.
         public static final int gd_progress_bar=0x7f060016;
         public static final int gd_segmented_bar=0x7f060002;
         public static final int gd_segmented_content_view=0x7f060003;
-        public static final int gd_separator_text=0x7f060017;
-        public static final int gd_subtext=0x7f060018;
-        public static final int gd_subtitle=0x7f060019;
+        public static final int gd_separator_text=0x7f06001f;
+        public static final int gd_subtext=0x7f060020;
+        public static final int gd_subtitle=0x7f060021;
         public static final int gd_text=0x7f060015;
-        public static final int gd_thumbnail=0x7f06001a;
-        public static final int header2=0x7f060022;
+        public static final int gd_thumbnail=0x7f060022;
+        public static final int gdi_arrow_down=0x7f06001d;
+        public static final int gdi_arrow_up=0x7f060018;
+        public static final int gdi_footer=0x7f06001c;
+        public static final int gdi_grid=0x7f06001e;
+        public static final int gdi_header=0x7f060017;
+        public static final int gdi_quick_action_items=0x7f06001b;
+        public static final int gdi_rack=0x7f06001a;
+        public static final int gdi_scroll=0x7f060019;
+        public static final int header2=0x7f06002a;
         public static final int icon=0x7f060007;
-        public static final int lay_main=0x7f06001c;
-        public static final int lay_wrapper=0x7f06001b;
-        public static final int member_details_list=0x7f06002f;
-        public static final int members_list=0x7f060021;
+        public static final int lay_main=0x7f060024;
+        public static final int lay_wrapper=0x7f060023;
+        public static final int member_details_list=0x7f060037;
+        public static final int members_list=0x7f060029;
         public static final int normal=0x7f060000;
-        public static final int profile_pic=0x7f06002e;
-        public static final int scroll=0x7f060024;
-        public static final int spacer=0x7f060028;
-        public static final int spacer2=0x7f06002b;
+        public static final int profile_pic=0x7f060036;
+        public static final int scroll=0x7f06002c;
+        public static final int spacer=0x7f060030;
+        public static final int spacer2=0x7f060033;
         public static final int title=0x7f060008;
-        public static final int tracks=0x7f060025;
+        public static final int tracks=0x7f06002d;
         public static final int txt_name=0x7f06000c;
         public static final int txt_occupation=0x7f06000e;
         public static final int txtv_name=0x7f06000b;
@@ -631,21 +688,25 @@ containing a value of this type.
         public static final int gd_list_content=0x7f03000b;
         public static final int gd_long_text_item_view=0x7f03000c;
         public static final int gd_progress_item_view=0x7f03000d;
-        public static final int gd_segment=0x7f03000e;
-        public static final int gd_separator_item_view=0x7f03000f;
-        public static final int gd_subtext_item_view=0x7f030010;
-        public static final int gd_subtitle_item_view=0x7f030011;
-        public static final int gd_tab_content=0x7f030012;
-        public static final int gd_tab_indicator=0x7f030013;
-        public static final int gd_text_item_view=0x7f030014;
-        public static final int gd_thumbnail_item_view=0x7f030015;
-        public static final int main=0x7f030016;
-        public static final int my_list=0x7f030017;
-        public static final int online_members=0x7f030018;
-        public static final int quickaction=0x7f030019;
-        public static final int select_member_type=0x7f03001a;
-        public static final int show_profile=0x7f03001b;
-        public static final int signin=0x7f03001c;
+        public static final int gd_quick_action_bar=0x7f03000e;
+        public static final int gd_quick_action_bar_item=0x7f03000f;
+        public static final int gd_quick_action_grid=0x7f030010;
+        public static final int gd_quick_action_grid_item=0x7f030011;
+        public static final int gd_segment=0x7f030012;
+        public static final int gd_separator_item_view=0x7f030013;
+        public static final int gd_subtext_item_view=0x7f030014;
+        public static final int gd_subtitle_item_view=0x7f030015;
+        public static final int gd_tab_content=0x7f030016;
+        public static final int gd_tab_indicator=0x7f030017;
+        public static final int gd_text_item_view=0x7f030018;
+        public static final int gd_thumbnail_item_view=0x7f030019;
+        public static final int main=0x7f03001a;
+        public static final int my_list=0x7f03001b;
+        public static final int online_members=0x7f03001c;
+        public static final int quickaction=0x7f03001d;
+        public static final int select_member_type=0x7f03001e;
+        public static final int show_profile=0x7f03001f;
+        public static final int signin=0x7f030020;
     }
     public static final class string {
         public static final int advanced_settings=0x7f09001e;
@@ -700,20 +761,31 @@ containing a value of this type.
     public static final class style {
         /**  Animation styles 
          */
-        public static final int Animations=0x7f0a0026;
+        public static final int Animations=0x7f0a0035;
         /**  PopDownMenu 
          */
-        public static final int Animations_PopDownMenu=0x7f0a0027;
-        public static final int Animations_PopDownMenu_Center=0x7f0a002a;
-        public static final int Animations_PopDownMenu_Left=0x7f0a0028;
-        public static final int Animations_PopDownMenu_Right=0x7f0a0029;
+        public static final int Animations_PopDownMenu=0x7f0a0036;
+        public static final int Animations_PopDownMenu_Center=0x7f0a0039;
+        public static final int Animations_PopDownMenu_Left=0x7f0a0037;
+        public static final int Animations_PopDownMenu_Right=0x7f0a0038;
         /**  PopUpMenu 
          */
-        public static final int Animations_PopUpMenu=0x7f0a002b;
-        public static final int Animations_PopUpMenu_Center=0x7f0a002e;
-        public static final int Animations_PopUpMenu_Left=0x7f0a002c;
-        public static final int Animations_PopUpMenu_Right=0x7f0a002d;
+        public static final int Animations_PopUpMenu=0x7f0a003a;
+        public static final int Animations_PopUpMenu_Center=0x7f0a003d;
+        public static final int Animations_PopUpMenu_Left=0x7f0a003b;
+        public static final int Animations_PopUpMenu_Right=0x7f0a003c;
         public static final int GreenDroid=0x7f0a0006;
+        /**  PopDownMenu 
+         */
+        public static final int GreenDroid_Animation=0x7f0a0028;
+        public static final int GreenDroid_Animation_PopDown=0x7f0a0029;
+        public static final int GreenDroid_Animation_PopDown_Center=0x7f0a002c;
+        public static final int GreenDroid_Animation_PopDown_Left=0x7f0a002a;
+        public static final int GreenDroid_Animation_PopDown_Right=0x7f0a002b;
+        public static final int GreenDroid_Animation_PopUp=0x7f0a002d;
+        public static final int GreenDroid_Animation_PopUp_Center=0x7f0a0030;
+        public static final int GreenDroid_Animation_PopUp_Left=0x7f0a002e;
+        public static final int GreenDroid_Animation_PopUp_Right=0x7f0a002f;
         /**  Styles for the DescriptionItemView 
          */
         public static final int GreenDroid_DescriptionItemView=0x7f0a000a;
@@ -761,19 +833,27 @@ containing a value of this type.
         public static final int GreenDroid_Widget_ActionBar_Dashboard=0x7f0a001f;
         public static final int GreenDroid_Widget_ActionBar_Item=0x7f0a0020;
         public static final int GreenDroid_Widget_ActionBar_Title=0x7f0a0021;
-        public static final int SeparatorItemView=0x7f0a0024;
+        public static final int GreenDroid_Widget_QuickAction=0x7f0a0022;
+        public static final int GreenDroid_Widget_QuickAction_Bar=0x7f0a0023;
+        public static final int GreenDroid_Widget_QuickAction_Bar_Item=0x7f0a0026;
+        /**  QuickAction related styles 
+         */
+        public static final int GreenDroid_Widget_QuickAction_Grid=0x7f0a0024;
+        public static final int GreenDroid_Widget_QuickAction_Grid_Item=0x7f0a0027;
+        public static final int GreenDroid_Widget_QuickAction_Item=0x7f0a0025;
+        public static final int SeparatorItemView=0x7f0a0033;
         public static final int TextAppearance=0x7f0a0000;
         public static final int TextAppearance_Large=0x7f0a0001;
         public static final int TextAppearance_Medium=0x7f0a0002;
         public static final int TextAppearance_Separator=0x7f0a0004;
         public static final int TextAppearance_Small=0x7f0a0003;
         public static final int TextAppearance_TabIndicator=0x7f0a0005;
-        public static final int TextAppearanceLarge=0x7f0a0025;
-        public static final int Theme_GDCatalog=0x7f0a002f;
-        public static final int Theme_GDCatalog_TweakedItems=0x7f0a0030;
-        public static final int Theme_GreenDroid=0x7f0a0022;
-        public static final int Theme_GreenDroid_NoTitleBar=0x7f0a0023;
-        public static final int Theme_NoTitleBar=0x7f0a0031;
+        public static final int TextAppearanceLarge=0x7f0a0034;
+        public static final int Theme_GDCatalog=0x7f0a003e;
+        public static final int Theme_GDCatalog_TweakedItems=0x7f0a003f;
+        public static final int Theme_GreenDroid=0x7f0a0031;
+        public static final int Theme_GreenDroid_NoTitleBar=0x7f0a0032;
+        public static final int Theme_NoTitleBar=0x7f0a0040;
     }
     public static final class xml {
         public static final int preferences=0x7f050000;
@@ -798,8 +878,8 @@ containing a value of this type.
            @see #ActionBar_type
          */
         public static final int[] ActionBar = {
-            0x7f01003e, 0x7f01003f, 0x7f010042, 0x7f010043,
-            0x7f010044
+            0x7f010042, 0x7f010043, 0x7f010046, 0x7f010047,
+            0x7f010048
         };
         /**
           <p>This symbol is the offset where the {@link com.ihub.android.app.R.attr#dividerDrawable}
@@ -884,7 +964,7 @@ containing a value of this type.
            @see #DrawableItem_drawable
          */
         public static final int[] DrawableItem = {
-            0x7f01003a
+            0x7f01003e
         };
         /**
           <p>This symbol is the offset where the {@link com.ihub.android.app.R.attr#drawable}
@@ -910,7 +990,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            @see #Item_enabled
          */
         public static final int[] Item = {
-            0x7f010037
+            0x7f01003b
         };
         /**
           <p>This symbol is the offset where the {@link com.ihub.android.app.R.attr#enabled}
@@ -942,7 +1022,7 @@ containing a value of this type.
            @see #ProgressItem_isInProgress
          */
         public static final int[] ProgressItem = {
-            0x7f010039
+            0x7f01003d
         };
         /**
           <p>This symbol is the offset where the {@link com.ihub.android.app.R.attr#isInProgress}
@@ -971,7 +1051,7 @@ containing a value of this type.
            @see #SegmentedBar_dividerWidth
          */
         public static final int[] SegmentedBar = {
-            0x7f01003e, 0x7f01003f
+            0x7f010042, 0x7f010043
         };
         /**
           <p>This symbol is the offset where the {@link com.ihub.android.app.R.attr#dividerDrawable}
@@ -1012,7 +1092,7 @@ containing a value of this type.
            @see #SegmentedHost_segmentedContentView
          */
         public static final int[] SegmentedHost = {
-            0x7f010040, 0x7f010041
+            0x7f010044, 0x7f010045
         };
         /**
           <p>This symbol is the offset where the {@link com.ihub.android.app.R.attr#segmentedBar}
@@ -1050,7 +1130,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
            @see #SubtextItem_subtext
          */
         public static final int[] SubtextItem = {
-            0x7f01003c
+            0x7f010040
         };
         /**
           <p>This symbol is the offset where the {@link com.ihub.android.app.R.attr#subtext}
@@ -1077,7 +1157,7 @@ containing a value of this type.
            @see #SubtitleItem_subtitle
          */
         public static final int[] SubtitleItem = {
-            0x7f01003b
+            0x7f01003f
         };
         /**
           <p>This symbol is the offset where the {@link com.ihub.android.app.R.attr#subtitle}
@@ -1104,7 +1184,7 @@ containing a value of this type.
            @see #TextItem_text
          */
         public static final int[] TextItem = {
-            0x7f010038
+            0x7f01003c
         };
         /**
           <p>This symbol is the offset where the {@link com.ihub.android.app.R.attr#text}
@@ -1131,7 +1211,7 @@ containing a value of this type.
            @see #ThumbnailItem_thumbnail
          */
         public static final int[] ThumbnailItem = {
-            0x7f01003d
+            0x7f010041
         };
         /**
           <p>This symbol is the offset where the {@link com.ihub.android.app.R.attr#thumbnail}

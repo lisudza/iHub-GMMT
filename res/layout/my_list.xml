@@ -1,19 +1,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight"
-    
-    android:padding="6dip">
+    android:layout_height="?android:attr/listPreferredItemHeight">
     
     <ImageView
         android:id="@+id/icon"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
-        android:layout_marginRight="6dip"
         android:src="@drawable/icon" />
 
     <LinearLayout
         android:orientation="vertical"
-    
         android:layout_width="0dip"
         android:layout_weight="1"
         android:layout_height="fill_parent">
@@ -23,7 +19,8 @@
             android:layout_width="fill_parent"
             android:layout_height="0dip"
             android:layout_weight="1"
-                    
+            android:textSize="15px"
+            android:textStyle="bold"
             android:gravity="center_vertical"
             android:text="My Application" />
             
@@ -32,7 +29,7 @@
             android:layout_width="fill_parent"
             android:layout_height="0dip"
             android:layout_weight="1" 
-            
+            android:textSize="10px"
             android:singleLine="true"
             android:ellipsize="marquee"
             android:text="Simple application that shows how to use RelativeLayout" />

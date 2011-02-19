@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: /home/lisudza/workspace/iHub/src/com/ihub/android/app/service/UpdateMembersInfo.aidl
+ * Original file: /home/stuart/workspace/iHub RC2/src/com/ihub/android/app/service/UpdateMembersInfo.aidl
  */
 package com.ihub.android.app.service;
 public interface UpdateMembersInfo extends android.os.IInterface

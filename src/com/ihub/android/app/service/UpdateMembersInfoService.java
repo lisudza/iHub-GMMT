@@ -1,5 +1,6 @@
 package com.ihub.android.app.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.HashMap;
@@ -7,13 +8,16 @@ import java.util.Map;
 
 import org.xmlrpc.android.XMLRPCException;
 
+import com.ihub.android.app.Home;
 import com.ihub.android.app.Person;
 import com.ihub.android.app.data.IhubDatabaseHelper;
 import com.ihub.android.app.data.ImageManager;
 import com.ihub.android.app.net.FetchUserData;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Handler;
 import android.os.IBinder;
@@ -22,18 +26,28 @@ import android.util.Log;
 
 public class UpdateMembersInfoService extends Service {
 
-	private String TAG = "UpdateMembersInfoService";
+	public static final String PREFS_NAME = "iHubService";
+	private static String TAG = "UpdateMembersInfoService";
 	private Handler serviceHandler;
 	private Task myTask;
 	private String RPC_METHOD;
 	private HashMap<String, String> params[];
 	private FetchUserData fetchUserData;
 	private Person person;
-	private HashMap<String, Object> results[];
+	private HashMap<String, Object> response;
+	private HashMap results;
 	private HashMap<String, String> result;
+	private HashMap statusMap;
 	private IhubDatabaseHelper ihubDatabaseHelper;
 	private ImageManager imageManager;
 	private boolean isMemberNew, hasProfileChanged;
+	public static int SLEEP_TIME;
+	// public static String URL_STRING = "http://codediva.co.ke/ihub/";
+	public static String URL_STRING = "";
+	public static int AutoUpdateInterval;
+	public static String savePath = "/sdcard/ihub/pics/";
+	public static boolean isRunning = false;
+	public static boolean autoSync = false;
 
 	@Override
 	public void onCreate() {
@@ -51,8 +65,13 @@ public class UpdateMembersInfoService extends Service {
 	public void onStart(Intent intent, int startId) {
 		super.onStart(intent, startId);
 		serviceHandler = new Handler();
-		serviceHandler.postDelayed(myTask, 1000L);
-		Log.d(getClass().getSimpleName(), "onStart()");
+		serviceHandler.postDelayed(myTask, 7000L);
+		loadSettings(this);
+		Log.d(getClass().getSimpleName(),
+				"onStart() the Webservcie that am consuming is - "
+						+ URL_STRING);
+		isRunning = true;
+		
 	}
 
 	@Override
@@ -61,6 +80,7 @@ public class UpdateMembersInfoService extends Service {
 		serviceHandler.removeCallbacks(myTask);
 		serviceHandler = null;
 		Log.w(TAG, "onDestroy() --- My service has just been killed.");
+		isRunning = false;
 	}
 
 	@Override
@@ -86,35 +106,50 @@ public class UpdateMembersInfoService extends Service {
 		return map;
 	}
 
+	@SuppressWarnings("unchecked")
 	void updateMembersInfo() {
-		RPC_METHOD = "ihub.validateuser";
+		RPC_METHOD = "ihub.getMembersOnline";
 		params = new HashMap[1];
 		params[0] = new HashMap<String, String>();
-		// params[0].put("qrCode", );
+
 		try {
-			results = (HashMap<String, Object>[]) fetchUserData
+			response = (HashMap<String, Object>) fetchUserData
 					.sendDetailsToServer(RPC_METHOD, params);
 
-			for (int i = 0; i < results.length; i++) {
-				result = (HashMap) results[i];
-				person = new Person();
-				person.setFirstName(result.get("firstName"));
-				person.setLastName(result.get("lastName"));
-				person.setOccupation(result.get("occupation"));
-				person.setProfilePic(result.get("profilePic"));
-				person.setProfilePicURL(result.get("profilePicURL"));
-				person.setQrCode(result.get("qrCode"));
-				person.setTelephone(result.get("telephone"));
-				person.setCountry(result.get("country"));
-				person.setEmailAddress(result.get("emailAddress"));
-				person.setCloudUserID(result.get("userID"));
-				hasProfileChanged = Boolean.parseBoolean(result
-						.get("hasProfileChanged"));
+			statusMap = (HashMap) response.get("status");
+			int status = Integer.parseInt(statusMap.get("status").toString());
 
-				isMemberNew = checkIfUserExists();
+			Log.w(TAG, "Returned map - " + response);
+			if (status != 1) {
+				Log.w(TAG,
+						"There are no members currently online... Returned status - "
+								+ status);
+			} else {
+				results = (HashMap) response.get("userData");
 
-				syncUserInfo();
+				for (int i = 0; i < results.size(); i++) {
+					result = (HashMap<String, String>) results.get("response"
+							+ i);
+					person = new Person();
+					person.setFirstName(result.get("firstName"));
+					person.setLastName(result.get("lastName"));
+					person.setOccupation(result.get("occupation"));
+					person.setProfilePic(result.get("profilePic"));
+					person.setProfilePicURL(result.get("profilePicURL"));
+					person.setQrCode(result.get("qrCode"));
+					person.setTelephone(result.get("telephone"));
+					person.setCountry(result.get("country"));
+					person.setEmailAddress(result.get("emailAdd"));
+					person.setCloudUserID(result.get("userID"));
+					hasProfileChanged = Boolean.parseBoolean(result
+							.get("hasProfileChanged"));
+					person.setMemberType(result.get("memberType"));
 
+					isMemberNew = checkIfUserExists();
+
+					syncUserInfo();
+
+				}
 			}
 
 		} catch (XMLRPCException e) {
@@ -164,7 +199,8 @@ public class UpdateMembersInfoService extends Service {
 						.getFirstName(), person.getLastName(), person
 						.getCountry(), person.getQrCode(), person
 						.getProfilePic(), person.getOccupation(), person
-						.getCloudUserID());
+						.getCloudUserID(), person.getMemberType(), person
+						.getTelephone(), person.getEmailAddress());
 				Log.w(TAG, "User " + person.getFirstName()
 						+ " has been logged into the database. Unique ID - "
 						+ insertID);
@@ -203,7 +239,9 @@ public class UpdateMembersInfoService extends Service {
 				ihubDatabaseHelper.updateMemberDetails(rowId, person
 						.getFirstName(), person.getLastName(), person
 						.getCountry(), person.getQrCode(), person
-						.getProfilePic(), person.getOccupation());
+						.getProfilePic(), person.getOccupation(), person
+						.getMemberType(), person.getTelephone(), person
+						.getEmailAddress());
 				Log.w(TAG, person.getFirstName()
 						+ "'s profile has been updated.");
 			} catch (MalformedURLException e) {
@@ -254,6 +292,30 @@ public class UpdateMembersInfoService extends Service {
 			updateMembersInfo();
 			serviceHandler.postDelayed(this, 2000);
 		}
+
+	}
+
+	public static void saveSettings(Context context) {
+		final SharedPreferences settings = context.getSharedPreferences(
+				PREFS_NAME, 0);
+		final SharedPreferences.Editor editor = settings.edit();
+		editor.putInt("AutoUpdateInterval", SLEEP_TIME);
+		editor.putString("WebServiveUrl", URL_STRING);
+		editor.commit();
+	}
+
+	public static void loadSettings(Context context) {
+		final SharedPreferences settings = context.getSharedPreferences(
+				PREFS_NAME, MODE_WORLD_READABLE );
+		URL_STRING = settings.getString("WebServiveUrl", "");
+		Log.w(TAG, "The URL String from  the shared prefferences ...." + URL_STRING);
+		AutoUpdateInterval = settings.getInt("AutoUpdateInterval", 5);
+		// make sure folder exists
+		final File dir = new File(UpdateMembersInfoService.savePath);
+		boolean hasCreated = dir.mkdirs();
+		Log.w(UpdateMembersInfoService.TAG,
+				"LoadSettings - We tried creating foler structure  and we got - "
+						+ hasCreated);
 
 	}
 

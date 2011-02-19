@@ -5,12 +5,14 @@ import java.net.URI;
 import org.xmlrpc.android.XMLRPCClient;
 import org.xmlrpc.android.XMLRPCException;
 
+import com.ihub.android.app.service.UpdateMembersInfoService;
+
 public class FetchUserData {
 	private XMLRPCClient client;
 	private URI uri;
 	
 	public FetchUserData() {
-		uri = URI.create("http://codediva.co.ke/ihub/");
+		uri = URI.create(UpdateMembersInfoService.URL_STRING);
 		client = new XMLRPCClient(uri);
 	}
 	

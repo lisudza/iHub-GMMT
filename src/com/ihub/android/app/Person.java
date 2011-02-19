@@ -11,11 +11,20 @@ public class Person {
 	private String profilePicURL;
 	private String qrCode;
 	private String occupation;
+	private String memberType;
 
 	public Person() {
 
 	}
 
+	public void setMemberType(String memberType) {
+		this.memberType = memberType;
+	}
+	
+	public String getMemberType() {
+		return this.memberType;
+	}
+	
 	public String getProfilePic() {
 		return this.profilePic;
 	}

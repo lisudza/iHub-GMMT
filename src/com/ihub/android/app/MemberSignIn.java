@@ -1,8 +1,15 @@
 package com.ihub.android.app;
 
+import greendroid.app.GDListActivity;
+import greendroid.widget.ItemAdapter;
+import greendroid.widget.item.Item;
+import greendroid.widget.item.SubtextItem;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.xmlrpc.android.XMLRPCException;
 
@@ -22,15 +29,16 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MemberSignIn extends Activity {
+public class MemberSignIn extends GDListActivity {
 
 	private String TAG = "MemberSignIn";
 	private String firstName, lastName, cloudUserID, isAllowed, profilePic,
 			profilePicURL, telephone, emailAddress, qrCode, occupation,
-			country;
+			country, memberType;
 	private Person person;
 	private IhubDatabaseHelper ihubDatabaseHelper;
 	private boolean isMemberNew, hasProfileChanged;
@@ -43,28 +51,29 @@ public class MemberSignIn extends Activity {
 	private String RPC_METHOD;
 	private HashMap<String, String> params[];
 	private FetchUserData fetchUserData;
-	private Context context ;
+	private Context context;
 	private int duration = Toast.LENGTH_LONG;
 	private Toast toast;
 	private String toastMessage;
-	
-	
+	private ListView member_details_list;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.signin);
+		setActionBarContentView(R.layout.signin);
+		setTitle("Sign In/Out");
 		context = getApplicationContext();
 		ihubDatabaseHelper = new IhubDatabaseHelper(this);
 		ihubDatabaseHelper.createDatabase();
 		ihubDatabaseHelper.createTable();
-		
+
 		imageManager = new ImageManager();
 		fetchUserData = new FetchUserData();
-		
+
 		Intent intent = getIntent();
 		Bundle b = intent.getExtras();
-		
+
 		firstName = b.getString("firstName");
 		lastName = b.getString("lastName");
 		profilePic = b.getString("profilePic");
@@ -77,6 +86,7 @@ public class MemberSignIn extends Activity {
 		profilePicURL = b.getString("profilePicURL");
 		country = b.getString("country");
 		qrCode = b.getString("qrCode");
+		memberType = b.getString("memberType");
 
 		Log.w(TAG, "FirstName - " + firstName);
 		Log.w(TAG, "User ID - " + cloudUserID);
@@ -91,6 +101,7 @@ public class MemberSignIn extends Activity {
 		person.setQrCode(qrCode);
 		person.setOccupation(occupation);
 		person.setCountry(country);
+		person.setMemberType(memberType);
 
 		isMemberNew = checkIfUserExists();
 		Log.w(TAG, "Value of isMemberNew - " + isMemberNew);
@@ -99,8 +110,20 @@ public class MemberSignIn extends Activity {
 		txtNames = (TextView) findViewById(R.id.txt_name);
 		txtOccupation = (TextView) findViewById(R.id.txt_occupation);
 		imgProfilePic = (ImageView) findViewById(R.id.profile_pic);
-		txtNames.setText(person.getFirstName() + " " + person.getLastName());
-		txtOccupation.setText(person.getOccupation());
+		Log.w(TAG, "NAmes: " + person.getFirstName() + " "
+				+ person.getLastName());
+		txtNames.setText(person.getFirstName());
+
+		member_details_list = (ListView) findViewById(R.id.member_details_list);
+		List<Item> items = new ArrayList<Item>();
+
+		items.add(new SubtextItem("Name ", person.getFirstName()+" "+person.getLastName()));
+		items.add(new SubtextItem("Telephone", person.getTelephone()));
+		items.add(new SubtextItem("Occupation", person.getOccupation()));
+		items.add(new SubtextItem("Email Address", person.getEmailAddress()));
+		final ItemAdapter adapter = new ItemAdapter(this, items);
+		
+		member_details_list.setAdapter(adapter);
 
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inSampleSize = 2;
@@ -110,9 +133,9 @@ public class MemberSignIn extends Activity {
 		imgProfilePic.setImageBitmap(bm);
 		btn_signin = (Button) findViewById(R.id.btn_signin);
 		btn_cancel = (Button) findViewById(R.id.btn_cancel);
-		
+
 		btn_signin.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				String alternateBtnText = "";
@@ -123,22 +146,35 @@ public class MemberSignIn extends Activity {
 					RPC_METHOD = "ihub.signout";
 					alternateBtnText = "Sign In";
 				}
-				
-				
+
 				params = new HashMap[1];
 				params[0] = new HashMap<String, String>();
 				params[0].put("userID", person.getCloudUserID());
-				
+
 				try {
 					fetchUserData.sendDetailsToServer(RPC_METHOD, params);
 					btn_signin.setText(alternateBtnText);
 				} catch (XMLRPCException e) {
-					toastMessage = "Hi "+person.getFirstName()+", "+btn_signin.getText() +" operation failed. Please try again later.";
-					Log.w(TAG, "Operation "+btn_signin.getText()+" for user "+person.getFirstName()+" Failed.");
+					toastMessage = "Hi " + person.getFirstName() + ", "
+							+ btn_signin.getText()
+							+ " operation failed. Please try again later.";
+					Log
+							.w(TAG, "Operation " + btn_signin.getText()
+									+ " for user " + person.getFirstName()
+									+ " Failed.");
 					e.printStackTrace();
 					toast = Toast.makeText(context, toastMessage, duration);
 					toast.show();
 				}
+			}
+		});	
+
+		btn_cancel.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
 			}
 		});
 		
@@ -204,7 +240,7 @@ public class MemberSignIn extends Activity {
 						.getFirstName(), person.getLastName(), person
 						.getCountry(), person.getQrCode(), person
 						.getProfilePic(), person.getOccupation(), person
-						.getCloudUserID());
+						.getCloudUserID(), person.getMemberType(), person.getTelephone(), person.getEmailAddress());
 				Log.w(TAG, "User " + person.getFirstName()
 						+ " has been logged into the database. Unique ID - "
 						+ insertID);
@@ -242,7 +278,8 @@ public class MemberSignIn extends Activity {
 				ihubDatabaseHelper.updateMemberDetails(rowId, person
 						.getFirstName(), person.getLastName(), person
 						.getCountry(), person.getQrCode(), person
-						.getProfilePic(), person.getOccupation());
+						.getProfilePic(), person.getOccupation(), person
+						.getMemberType(), person.getTelephone(), person.getEmailAddress());
 				Log.w(TAG, person.getFirstName()
 						+ "'s profile has been updated.");
 			} catch (MalformedURLException e) {

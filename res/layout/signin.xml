@@ -17,81 +17,47 @@
 					    <ImageView
 							android:id="@+id/profile_pic"
 							android:layout_width="wrap_content"
-							android:layout_height="wrap_content">
+							android:layout_height="wrap_content"
+							android:layout_marginRight="25px">
 						</ImageView>
 						<TextView
-							android:id="@+id/welcome"
+							android:id="@+id/txt_name"
 							android:layout_width="wrap_content"
 							android:layout_height="wrap_content"
-							android:text="Hey Kenn, Welcome to the iHub.">
+							android:text="Welcome to the iHub."
+							android:textSize="25px"
+							android:textStyle="bold">
 						</TextView>
 		    </LinearLayout>
 		    
-		    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		    	android:paddingTop="4dip" 
-		    	android:paddingBottom="6dip"
-				android:layout_width="fill_parent" 
-				android:layout_height="220px"
-		    	android:orientation="vertical"
-		    	android:background="@drawable/round_shape">
-		    	
-		    	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-				    android:paddingTop="4dip" 
-				    android:paddingBottom="6dip"
-					android:layout_width="wrap_content" 	
-					android:layout_height="wrap_content"
-				    android:orientation="horizontal">
-		    	
-				<TextView
-					android:id="@+id/lbl_name"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="Name:">
-				</TextView>
-				<TextView
-					android:id="@+id/txt_name"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content">
-				</TextView>
-				</LinearLayout>
-				<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-				    android:paddingTop="4dip" 
-				    android:paddingBottom="6dip"
-					android:layout_width="wrap_content" 
-					android:layout_height="wrap_content"
-				    android:orientation="horizontal">
-		    	
-				<TextView
-					android:id="@+id/lbl_occupation"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content"
-					android:text="Occupation:">
-				</TextView>
-				<TextView
-					android:id="@+id/txt_occupation"
-					android:layout_width="wrap_content"
-					android:layout_height="wrap_content">
-				</TextView>
-				</LinearLayout>
-				
-		    </LinearLayout>
-		   <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-				    android:paddingTop="4dip" 
-				    android:paddingBottom="6dip"
-					android:layout_width="fill_parent" 
-					android:layout_height="wrap_content"
-				    android:orientation="horizontal"
-				    android:layout_alignParentBottom="true">
-		    	
-				<Button
-					android:id="@+id/btn_signin"
-					android:layout_width="160px"
-					android:layout_height="wrap_content"
-					android:text="Sign In"/>
-				<Button
-					android:id="@+id/btn_cancel"
-					android:layout_width="160px"
-					android:layout_height="wrap_content"
-					android:text="Cancel"/>	
-				</LinearLayout> 
+		  	<ListView 
+			android:id="@+id/member_details_list" 
+			android:layout_alignParentTop="true"
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content">
+			</ListView>  
+		    
+		  <LinearLayout 
+			android:id="@+id/LinearLayout01" 
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content" 
+			android:layout_alignParentBottom="true">
+		<Button 
+			android:id="@+id/btn_signin" 
+			android:text="Sign In"
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:layout_alignParentBottom="true">
+		</Button>
+		<Button 
+			android:id="@+id/btn_cancel" 
+			android:layout_alignRight="@id/btn_signin" 
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:text="Cancel"
+			android:layout_alignParentBottom="true">
+		</Button>
+	</LinearLayout>
   </LinearLayout>

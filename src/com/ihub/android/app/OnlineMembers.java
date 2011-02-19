@@ -10,32 +10,32 @@ import com.ihub.android.app.data.ImageManager;
 import com.ihub.android.app.qactions.ActionItem;
 import com.ihub.android.app.qactions.QuickAction;
 
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import greendroid.app.GDListActivity;
 import greendroid.widget.ActionBarItem;
-import greendroid.widget.ItemAdapter;
 import greendroid.widget.LoaderActionBarItem;
 import greendroid.widget.ActionBarItem.Type;
 import greendroid.widget.item.Item;
-import greendroid.widget.item.ThumbnailItem;
 
+@SuppressWarnings("unchecked")
 public class OnlineMembers extends GDListActivity {
 
 	private ListView list_view;
@@ -47,8 +47,9 @@ public class OnlineMembers extends GDListActivity {
 	private Vector listContents;
 	private String members_array[] = new String[1];
 	private String MEMBER_TYPE_TO_DISPLAY;
+	private QuickAction qa;
 	private HashMap selectedUserMap;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -56,8 +57,11 @@ public class OnlineMembers extends GDListActivity {
 		setActionBarContentView(R.layout.online_members);
 		Intent intent = getIntent();
 		Bundle bundle = intent.getExtras();
+		/*
+		 * Extract extras from the bundle resource. In this case its the member
+		 * type that the user wants to view.
+		 */
 		MEMBER_TYPE_TO_DISPLAY = bundle.getString("MemberType");
-
 		setTitle(MEMBER_TYPE_TO_DISPLAY + " members");
 
 		addActionBarItem(Type.Refresh);
@@ -83,6 +87,9 @@ public class OnlineMembers extends GDListActivity {
 			adapter1.notifyDataSetChanged();
 		}
 
+		/*
+		 * initialize the quick action(s) controls
+		 */
 		final ActionItem chart = new ActionItem();
 
 		chart.setTitle("Kick");
@@ -95,6 +102,7 @@ public class OnlineMembers extends GDListActivity {
 								OnlineMembers.this,
 								"Soon you will be able to kick a user out of the network. :)",
 								Toast.LENGTH_LONG).show();
+				qa.dismiss();
 			}
 		});
 
@@ -105,34 +113,62 @@ public class OnlineMembers extends GDListActivity {
 		profile.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(OnlineMembers.this, ShowProfile.class);
-				intent.putExtra("MemberID", selectedUserMap.get("MemberID").toString());
+				/*
+				 * User chose to view the members profile. Add the members
+				 * details into intent extras and start the ShowProfile
+				 * Activity.
+				 */
+				Intent intent = new Intent(OnlineMembers.this,
+						ShowProfile.class);
+				intent.putExtra("MemberID", selectedUserMap.get("MemberID")
+						.toString());
 				intent.putExtra("Name", selectedUserMap.get("Name").toString());
-				intent.putExtra("Image", selectedUserMap.get("image").toString());
-				intent.putExtra("Occupation", selectedUserMap.get("Occupation").toString());
+				intent.putExtra("Image", selectedUserMap.get("image")
+						.toString());
+				intent.putExtra("Occupation", selectedUserMap.get("Occupation")
+						.toString());
 				startActivity(intent);
+				qa.dismiss();
 			}
 		});
 
+		final ActionItem tweet = new ActionItem();
+		tweet.setTitle("Tweet");
+		tweet.setIcon(getResources().getDrawable(R.drawable.ic_tweets_bubble));
+		tweet.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				postTweet(selectedUserMap.get("Name").toString());
+				qa.dismiss();
+			}
+		});
+		
+		
+		/*
+		 * This is the default list contents if there are no members online for
+		 * each respective category (black, green, red or black))
+		 */
 		list_view.setOnItemClickListener(new OnItemClickListener() {
-
-			@SuppressWarnings("unchecked")
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				Class classType = list_view.getItemAtPosition(position)
 						.getClass();
-				Log.w(TAG, "Class Type - "+classType.getName());
+				Log.w(TAG, "Class Type - " + classType.getName());
 				if (classType.equals(java.lang.String.class)) {
-						Log.w(TAG, "No members currently online so we can't display actions.");
+					Log
+							.w(TAG,
+									"No members currently online so we can't display actions.");
 				} else {
 					selectedUserMap = (HashMap) list_view
 							.getItemAtPosition(position);
-					Log.w(TAG, "Hash Mapc contents - " + selectedUserMap);
-					QuickAction qa = new QuickAction(view);
+					Log.w(TAG, "Hash Map contents - " + selectedUserMap);
+					qa = new QuickAction(view);
 
 					qa.addActionItem(chart);
 					qa.addActionItem(profile);
+					qa.addActionItem(tweet);
 					qa.setAnimStyle(QuickAction.ANIM_AUTO);
 					qa.show();
 
@@ -142,6 +178,10 @@ public class OnlineMembers extends GDListActivity {
 
 	}
 
+	/**
+	 * Method <b>onHandleActionBarItemClick</b> --- handles the ActionBar
+	 * events.
+	 */
 	@Override
 	public boolean onHandleActionBarItemClick(ActionBarItem item, int position) {
 		switch (position) {
@@ -164,6 +204,13 @@ public class OnlineMembers extends GDListActivity {
 		return true;
 	}
 
+	/**
+	 * Method <b> populateList</b> --- fetches members of the selected type that
+	 * are currently online and populates the adapter that will be use to render
+	 * on the ListView.
+	 * 
+	 * @return - the number of records found in the database.
+	 */
 	public int populateList() {
 		Cursor cursor;
 		if (MEMBER_TYPE_TO_DISPLAY.equals("All")) {
@@ -195,5 +242,37 @@ public class OnlineMembers extends GDListActivity {
 		}
 		cursor.close();
 		return numRows;
+	}
+
+	public void postTweet(String message) {
+		Context context = getApplication();
+		try {
+			Intent intent = new Intent(Intent.ACTION_SEND);
+			intent.putExtra(Intent.EXTRA_TEXT, message);
+			intent.setType("text/plain");
+			final PackageManager pm = context.getPackageManager();
+			final List activityList = pm.queryIntentActivities(intent, 0);
+			int len = activityList.size();
+			for (int i = 0; i < len; i++) {
+				final ResolveInfo app = (ResolveInfo) activityList.get(i);
+				if ("com.twitter.android.PostActivity"
+						.equals(app.activityInfo.name)) {
+					final ActivityInfo activity = app.activityInfo;
+					final ComponentName name = new ComponentName(
+							activity.applicationInfo.packageName, activity.name);
+					intent = new Intent(Intent.ACTION_SEND);
+					intent.addCategory(Intent.CATEGORY_LAUNCHER);
+					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+							| Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+					intent.setComponent(name);
+					intent.putExtra(Intent.EXTRA_TEXT, message);
+					context.startActivity(intent);
+					break;
+				}
+			}
+		} catch (final ActivityNotFoundException e) {
+			Toast.makeText(this, "Damn! no suitable Twitter apps found.",
+					Toast.LENGTH_SHORT).show();
+		}
 	}
 }
